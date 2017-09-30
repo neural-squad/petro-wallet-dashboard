@@ -12,7 +12,7 @@ export default {
 
 <style>
 body, html {
-  background-color: #ccc;
+  background-color: #fff;
 }
 
 #app {

@@ -66,13 +66,13 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-
       this.$store.dispatch('login', this.form)
         .then((res) => {
+          this.$router.push('/dashboard');
           console.log(res);
         })
         .catch((err) => {
-          console.log(err);
+          console.error(err);
         });
     },
   },
@@ -84,11 +84,13 @@ export default {
 .credentialInput {
   height: 90px;
   font-size: 55px;
+  text-align: center;
 }
 
 #buttonGroup button {
   height: 60px;
   width: 40%;
   margin: 3%;
+  font-size: 30px;
 }
 </style>

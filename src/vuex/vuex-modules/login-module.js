@@ -21,9 +21,9 @@ const loginModule = {
   actions: {
     login: ({
       commit,
-    }, credentials) => new Promise((resolve, reject) => {
+    }, credentials) => new Promise((resolve) => {
       commit('LOGIN');
-      reject(credentials);
+      resolve(credentials);
       // axios.post('/user/login', {
       //   username: credentials.username,
       //   password: credentials.password,
