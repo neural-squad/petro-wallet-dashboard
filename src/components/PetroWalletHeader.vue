@@ -2,7 +2,7 @@
   <b-container class="bv-example-row">
     <b-row>
       <b-col col md="6">
-        <img id="PetroWalletHeader" width="100%" src="../assets/petrobras-assets/Principal_h_cor_RGB.png" alt="Logo dos Postos Petrobras" />
+        <img id="PetroWalletHeader" height="50%" src="../assets/favicon.png" alt="Logo dos Postos Petrobras" />
       </b-col>
     </b-row>
   </b-container>

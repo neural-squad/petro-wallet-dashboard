@@ -11,6 +11,10 @@ export default {
 </script>
 
 <style>
+body, html {
+  background-color: #ccc;
+}
+
 #app {
   font-family: PetrobrasSans_Rg;
   -webkit-font-smoothing: antialiased;
