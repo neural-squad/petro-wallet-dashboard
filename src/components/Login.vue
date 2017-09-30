@@ -51,15 +51,21 @@ export default {
       foods: [{
         text: 'Select One',
         value: null,
-      },
-        'Carrots', 'Beans', 'Tomatoes', 'Corn'],
+      }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
     };
   },
 
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      console.log(JSON.stringify(this.form));
+
+      this.$store.dispatch('login', this.form)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 
