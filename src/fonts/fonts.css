@@ -1,0 +1,34 @@
+@font-face {
+  font-family: PetrobrasSans_Bd;
+  src: url('../assets/petrobras-assets/PetrobrasSans_Bd.ttf');
+}
+
+@font-face {
+  font-family: PetrobrasSans_BdIt;
+  src: url('../assets/petrobras-assets/PetrobrasSans_BdIt.ttf');
+}
+
+@font-face {
+  font-family: petrobrasSans_It;
+  src: url('../assets/petrobras-assets/petrobrasSans_It.ttf');
+}
+
+@font-face {
+  font-family: PetrobrasSans_Lt;
+  src: url('../assets/petrobras-assets/PetrobrasSans_Lt.ttf');
+}
+
+@font-face {
+  font-family: PetrobrasSans_Rg;
+  src: url('../assets/petrobras-assets/PetrobrasSans_Rg.ttf');
+}
+
+@font-face {
+  font-family: PetrobrasSans_XBd;
+  src: url('../assets/petrobras-assets/PetrobrasSans_XBd.ttf');
+}
+
+@font-face {
+  font-family: PetrobrasSans_XBdIt;
+  src: url('../assets/petrobras-assets/PetrobrasSans_XBdIt.ttf');
+}

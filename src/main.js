@@ -2,6 +2,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
+// Fonts
+import '@/fonts/fonts.css';
+
 // Core Libs
 import Vue from 'vue';
 
