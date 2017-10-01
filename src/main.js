@@ -1,6 +1,7 @@
 // Styles
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'toastr/build/toastr.min.css';
 
 // Fonts
 import '@/fonts/fonts.css';

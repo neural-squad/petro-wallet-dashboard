@@ -2,10 +2,6 @@
   <b-container>
     <b-row>
 
-      <div id="errorMessageWrapper" style="display: none;">
-        <b-alert show dismissible variant="danger">{{ errorMessage }}</b-alert>
-      </div>
-
       <b-form @submit="onSubmit">
 
         <b-form-group id="cnpjInputGroup">
@@ -62,7 +58,6 @@ export default {
         username: '',
         password: '',
       },
-      errorMessage: null,
     };
   },
 
@@ -72,6 +67,7 @@ export default {
       this.$store.dispatch('login', this.form)
         .then(() => {
           this.$router.push('/dashboard');
+          this.$root.$children[0].$refs.notification.success('Login realizado com sucesso!', 'Sucesso!');
         })
         .catch((err) => {
           this.showError(err);
@@ -79,8 +75,7 @@ export default {
     },
 
     showError(message) {
-      this.errorMessage = message;
-      document.getElementById('errorMessageWrapper').style.display = 'block';
+      this.$root.$children[0].$refs.notification.error(message, 'Erro!');
     },
   },
 

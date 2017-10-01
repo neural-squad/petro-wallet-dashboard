@@ -2,16 +2,18 @@
   <div id="app">
     <petro-wallet-header></petro-wallet-header>
     <router-view></router-view>
+    <notification ref='notification'></notification>
   </div>
 </template>
 
 <script>
+import Notification from '@/components/Notification';
 import PetroWalletHeader from '@/components/PetroWalletHeader';
 
 export default {
   name: 'app',
 
-  components: { PetroWalletHeader },
+  components: { Notification, PetroWalletHeader },
 };
 </script>
 

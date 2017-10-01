@@ -5,21 +5,7 @@
       <h1>Exibindo resultado para o identificador:</h1>
       <h2>{{ this.identification }}</h2>
 
-      <div id="errorMessageWrapper" style="display: none;">
-        <b-alert show dismissible variant="danger">{{ errorMessage }}</b-alert>
-      </div>
-
       <b-form id="balanceconfirmTransactionForm" @submit="onSubmit">
-
-        <b-form-group>
-          <!-- Balance -->
-          <b-form-input
-            id="balance"
-            class="balance"
-            v-model="balance"
-            disabled>
-          </b-form-input>
-        </b-form-group>
 
         <b-form-group>
           <!-- Purchase Total -->
@@ -27,16 +13,6 @@
             id="purchase"
             class="purchase"
             v-model="form.purchase">
-          </b-form-input>
-        </b-form-group>
-
-        <b-form-group>
-          <!-- Remaining Amount -->
-          <b-form-input
-            id="remainingAmount"
-            class="remainingAmount"
-            :value="remainingAmountRS"
-            disabled>
           </b-form-input>
         </b-form-group>
 
@@ -73,7 +49,6 @@ export default {
         purchase: '0',
         remainingAmount: '0',
       },
-      errorMessage: null,
     };
   },
 
@@ -115,18 +90,17 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      this.$store.dispatch('makeAPurchase', this.form.purchase)
+      this.$store.dispatch('makeAPurchase', this.form)
         .then(() => {
           this.$router.go(-1);
         })
         .catch((err) => {
-          this.showError(err);
+          this.showError(err.message);
         });
     },
 
     showError(message) {
-      this.errorMessage = message;
-      document.getElementById('errorMessageWrapper').style.display = 'block';
+      this.$root.$children[0].$refs.notification.error(message, 'Erro!');
     },
 
     back() {
