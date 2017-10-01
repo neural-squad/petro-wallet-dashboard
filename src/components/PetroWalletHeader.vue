@@ -10,7 +10,7 @@
 
 <style scoped>
 img#PetroWalletHeader {
-  margin: 10% 50% 10% 50%;
+  margin: 10% 0;
   width: 100%;
 }
 </style>

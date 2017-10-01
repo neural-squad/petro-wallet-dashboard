@@ -107,7 +107,7 @@ export default {
 <style scoped>
 #balanceconfirmTransactionForm input {
   height: 90px;
-  font-size: 55px;
+  font-size: 2.5em;
   text-align: center;
 }
 
