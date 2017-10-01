@@ -1,7 +1,7 @@
 <template>
   <b-container class="bv-example-row">
     <b-row>
-      <b-col col md="6">
+      <b-col col md="12">
         <img id="PetroWalletHeader" height="50%" src="../assets/petrobras-assets/PetroWallet@Horizontal.png" alt="Logo dos Postos Petrobras" />
       </b-col>
     </b-row>
@@ -10,7 +10,8 @@
 
 <style scoped>
 img#PetroWalletHeader {
-  margin: 10% 0;
-  width: 100%;
+  margin: 5% 0;
+  width: auto;
+  max-height: 150px;
 }
 </style>

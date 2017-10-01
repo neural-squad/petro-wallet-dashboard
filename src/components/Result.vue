@@ -76,7 +76,7 @@ export default {
       .dispatch('setBalance', '100')
       .then(() => {
         this.form.balance = this.$store.getters.balance;
-        console.log('setBalance OK!');
+        // console.log('setBalance OK!');
       });
   },
 
