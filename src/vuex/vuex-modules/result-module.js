@@ -1,11 +1,17 @@
+import Parse from 'parse';
+
 const resultModule = {
   state: {
     balance: '',
+    lastPurchase: '',
   },
 
   mutations: {
     SET_BALANCE(state, balance) {
       state.balance = balance;
+    },
+    PURCHASE_SUCCESS(state, purchase) {
+      state.lastPurchase = purchase;
     },
   },
 
@@ -18,15 +24,19 @@ const resultModule = {
     }),
 
     makeAPurchase: ({
-      commit,
-    }, purchase) => new Promise((resolve) => {
-      resolve(purchase);
-    }),
-
+        commit,
+      }, purchase) => Parse.Cloud.run('pay', { purchase })
+        .then((success) => {
+          debugger;
+          commit('PURCHASE_SUCCESS', success.attributes);
+        }, (error) => {
+          throw error.message;
+        }),
   },
 
   getters: {
     balance: state => state.balance,
+    lastPurchase: state => state.lastPurchase,
   },
 };
 

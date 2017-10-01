@@ -5,6 +5,10 @@
       <h1>Exibindo resultado para o identificador:</h1>
       <h2>{{ this.identification }}</h2>
 
+      <div id="errorMessageWrapper" style="display: none;">
+        <b-alert show dismissible variant="danger">{{ errorMessage }}</b-alert>
+      </div>
+
       <b-form id="balanceconfirmTransactionForm" @submit="onSubmit">
 
         <b-form-group>
@@ -31,13 +35,14 @@
           <b-form-input
             id="remainingAmount"
             class="remainingAmount"
-            :value="remainingAmount"
+            :value="remainingAmountRS"
             disabled>
           </b-form-input>
         </b-form-group>
 
         <div id="buttonGroup">
           <b-button
+            id="submitButton"
             type="submit"
             variant="primary">
               Confirmar
@@ -68,6 +73,7 @@ export default {
         purchase: '0',
         remainingAmount: '0',
       },
+      errorMessage: null,
     };
   },
 
@@ -87,14 +93,40 @@ export default {
     identification() {
       return 'XXX-XXXX' || this.$store.getters.identification;
     },
+    remainingAmountRS() {
+      this.form.remainingAmount = this.form.balance - this.form.purchase;
+      return `R$ ${this.form.remainingAmount}`;
+    },
     remainingAmount() {
-      return `R$ ${this.form.balance - this.form.purchase}`;
+      return this.form.remainingAmount;
+    },
+  },
+
+  watch: {
+    remainingAmount() {
+      if (this.remainingAmount < 0) {
+        document.getElementById('submitButton').disabled = true;
+      } else {
+        document.getElementById('submitButton').disabled = false;
+      }
     },
   },
 
   methods: {
-    onSubmit() {
+    onSubmit(evt) {
+      evt.preventDefault();
+      this.$store.dispatch('makeAPurchase', this.form.purchase)
+        .then(() => {
+          this.$router.go(-1);
+        })
+        .catch((err) => {
+          this.showError(err);
+        });
+    },
 
+    showError(message) {
+      this.errorMessage = message;
+      document.getElementById('errorMessageWrapper').style.display = 'block';
     },
 
     back() {
