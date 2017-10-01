@@ -1,11 +1,10 @@
 <template>
   <b-container>
     <b-row>
-      <petro-wallet-header></petro-wallet-header>
 
-        <div id="errorMessageWrapper" style="display: none;">
-          <b-alert show dismissible variant="danger">{{ errorMessage }}</b-alert>
-        </div>
+      <div id="errorMessageWrapper" style="display: none;">
+        <b-alert show dismissible variant="danger">{{ errorMessage }}</b-alert>
+      </div>
 
       <b-form @submit="onSubmit">
 

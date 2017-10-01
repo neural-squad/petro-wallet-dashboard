@@ -1,12 +1,17 @@
 <template>
   <div id="app">
+    <petro-wallet-header></petro-wallet-header>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import PetroWalletHeader from '@/components/PetroWalletHeader';
+
 export default {
   name: 'app',
+
+  components: { PetroWalletHeader },
 };
 </script>
 

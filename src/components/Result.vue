@@ -5,10 +5,9 @@
       <h1>Exibindo resultado para o identificador:</h1>
       <h2>{{ this.identification }}</h2>
 
-      <b-form @submit="onSubmit">
+      <b-form id="balanceconfirmTransactionForm" @submit="onSubmit">
 
-        <b-form-group id="confirmTransactionInputGroup">
-
+        <b-form-group>
           <!-- Balance -->
           <b-form-input
             id="balance"
@@ -16,14 +15,18 @@
             v-model="balance"
             disabled>
           </b-form-input>
+        </b-form-group>
 
+        <b-form-group>
           <!-- Purchase Total -->
           <b-form-input
             id="purchase"
             class="purchase"
             v-model="form.purchase">
           </b-form-input>
+        </b-form-group>
 
+        <b-form-group>
           <!-- Remaining Amount -->
           <b-form-input
             id="remainingAmount"
@@ -31,7 +34,6 @@
             :value="remainingAmount"
             disabled>
           </b-form-input>
-
         </b-form-group>
 
         <div id="buttonGroup">
@@ -86,7 +88,7 @@ export default {
       return 'XXX-XXXX' || this.$store.getters.identification;
     },
     remainingAmount() {
-      return this.form.balance - this.form.purchase;
+      return `R$ ${this.form.balance - this.form.purchase}`;
     },
   },
 
@@ -103,7 +105,7 @@ export default {
 </script>
 
 <style scoped>
-#confirmTransactionInputGroup input {
+#balanceconfirmTransactionForm input {
   height: 90px;
   font-size: 55px;
   text-align: center;
