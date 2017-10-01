@@ -1,24 +1,18 @@
 <template>
   <b-container>
     <b-row>
-      <smart-input></smart-input>
+      <qr-code-reader-screen></qr-code-reader-screen>
     </b-row>
   </b-container>
 </template>
 
 <script>
-import SmartInput from './SmartInput';
+import QrCodeReaderScreen from './QrCodeReaderScreen';
 
 export default {
   name: 'Dashboard',
 
-  components: { SmartInput },
-
-  data() {
-    return {
-
-    };
-  },
+  components: { QrCodeReaderScreen },
 };
 </script>
 

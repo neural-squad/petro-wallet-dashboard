@@ -30,7 +30,6 @@ const smartInputModule = {
     sendTransactionToPaymentGateway: ({
       commit,
     }, transaction) => {
-      debugger;
       commit('SET_TRANSACTION', transaction);
     },
   },

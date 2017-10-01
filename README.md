@@ -1,6 +1,6 @@
 # petro-wallet-dashboard
 
-> A Vue.js project
+> A Vue.js project, called PetroWalletDashboard
 
 ## Build Setup
 
