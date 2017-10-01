@@ -32,6 +32,7 @@ const loginModule = {
 
   getters: {
     isLoggedIn: state => state.isLoggedIn,
+    cpf: state => state.user.name,
   },
 };
 

@@ -25,9 +25,8 @@ const resultModule = {
 
     makeAPurchase: ({
         commit,
-      }, purchase) => Parse.Cloud.run('pay', { purchase })
+      }, data) => Parse.Cloud.run('pay', data)
         .then((success) => {
-          debugger;
           commit('PURCHASE_SUCCESS', success.attributes);
         }, (error) => {
           throw error.message;

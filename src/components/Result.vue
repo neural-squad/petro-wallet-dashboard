@@ -90,7 +90,7 @@ export default {
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      this.$store.dispatch('makeAPurchase', this.form)
+      this.$store.dispatch('makeAPurchase', { purchase: this.form.purchase, cpf: this.$store.getters.cpf })
         .then(() => {
           this.$router.go(-1);
         })

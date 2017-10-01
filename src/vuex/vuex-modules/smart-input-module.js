@@ -1,3 +1,5 @@
+import Parse from 'parse';
+
 const smartInputModule = {
   state: {
     identification: null,
@@ -12,10 +14,13 @@ const smartInputModule = {
   actions: {
     setIdentification: ({
       commit,
-    }, identification) => new Promise((resolve) => {
-      commit('SET_IDENTIFICATION', identification);
-      resolve();
-    }),
+    }, identification) => Parse.Cloud.run('getClientData', { identification })
+      .then((success) => {
+        console.log(success);
+        commit('SET_IDENTIFICATION', identification);
+      }, (error) => {
+        throw error.message;
+      }),
   },
 
   getters: {

@@ -62,8 +62,12 @@ export default {
     onSubmit() {
       this.$store
         .dispatch('setIdentification', this.form.inputValue)
-        .then(() => {
+        .then((res) => {
           this.$router.push({ path: '/result' });
+          this.$root.$children[0].$refs.notification.success(`Dados encontrados! ${res}`, 'Sucesso!');
+        })
+        .catch((err) => {
+          this.$root.$children[0].$refs.notification.error(err.message, 'Erro!');
         });
     },
   },
