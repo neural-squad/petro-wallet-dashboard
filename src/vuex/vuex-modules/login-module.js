@@ -1,13 +1,13 @@
+import Parse from 'parse';
+
 const loginModule = {
   state: {
-    loggedIn: false,
+    isLoggedIn: false,
     pending: false,
+    user: Object,
   },
 
   mutations: {
-    LOGIN(state) {
-      state.loggedIn = true;
-    },
     LOGIN_SUCCESS(state, user) {
       state.isLoggedIn = true;
       state.pending = false;
@@ -20,25 +20,14 @@ const loginModule = {
 
   actions: {
     login: ({
-      commit,
-    }, credentials) => new Promise((resolve) => {
-      commit('LOGIN');
-      resolve(credentials);
-      // axios.post('/user/login', {
-      //   username: credentials.username,
-      //   password: credentials.password,
-      // }).then((response) => {
-      //   const token = response.headers['x-access-token'];
-      //   const user = (response && response.data && response.data.data &&
-      //     response.data.data.nome ? response.data.data.nome : '');
-      //   localStorage.setItem('token', token);
-      //   commit('LOGIN_SUCCESS', user);
-      //   resolve();
-      // }).catch((error) => {
-      //   commit('LOGOUT');
-      //   reject(error);
-      // });
-    }),
+        commit,
+      }, credentials) => Parse.User.logIn(credentials.username, credentials.password)
+      .then((success) => {
+        commit('LOGIN_SUCCESS', success.attributes);
+      }, (error) => {
+        commit('LOGOUT');
+        throw error.message;
+      }),
   },
 
   getters: {

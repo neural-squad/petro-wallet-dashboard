@@ -1,7 +1,11 @@
 <template>
-  <b-container class="bv-example-row">
+  <b-container>
     <b-row>
       <petro-wallet-header></petro-wallet-header>
+
+        <div id="errorMessageWrapper" style="display: none;">
+          <b-alert show dismissible variant="danger">{{ errorMessage }}</b-alert>
+        </div>
 
       <b-form @submit="onSubmit">
 
@@ -9,7 +13,7 @@
           <the-mask
             id="cnpjInput"
             class="credentialInput form-control"
-            v-model="form.cnpj"
+            v-model="form.username"
             required
             mask="##.###.###/####-##"
             placeholder="CNPJ">
@@ -39,7 +43,6 @@
               Limpar
           </b-button>
         </div>
-
       </b-form>
     </b-row>
   </b-container>
@@ -57,9 +60,10 @@ export default {
   data() {
     return {
       form: {
-        cnpjInputGroup: '',
-        senha: '',
+        username: '',
+        password: '',
       },
+      errorMessage: null,
     };
   },
 
@@ -67,13 +71,17 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
       this.$store.dispatch('login', this.form)
-        .then((res) => {
+        .then(() => {
           this.$router.push('/dashboard');
-          console.log(res);
         })
         .catch((err) => {
-          console.error(err);
+          this.showError(err);
         });
+    },
+
+    showError(message) {
+      this.errorMessage = message;
+      document.getElementById('errorMessageWrapper').style.display = 'block';
     },
   },
 

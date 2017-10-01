@@ -10,12 +10,15 @@ import Vue from 'vue';
 
 // Externals
 import BootstrapVue from 'bootstrap-vue';
+import Parse from 'parse';
 
 import App from './App';
 import router from './router';
 import store from './vuex/store';
 
 Vue.use(BootstrapVue);
+Parse.initialize('myAppId');
+Parse.serverURL = 'http://ec2-54-236-223-48.compute-1.amazonaws.com:1337/parse';
 
 Vue.config.productionTip = false;
 
