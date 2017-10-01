@@ -2,8 +2,8 @@
   <b-container>
     <b-row>
 
-      <h1>Exibindo resultado para o identificador:</h1>
-      <h2>{{ this.identification }}</h2>
+      <!-- <h1 style="margin: 20px;">{{ `Identificação: ${this.identification.username}` }}</h1> -->
+      <h1 style="margin-bottom: 80px;">{{ `Telefone: ${this.identification.phone}` }}</h1>
 
       <b-form id="balanceconfirmTransactionForm" @submit="onSubmit">
 
@@ -12,6 +12,7 @@
           <b-form-input
             id="purchase"
             class="purchase"
+            placeholder="R$ 00,00"
             v-model="form.purchase">
           </b-form-input>
         </b-form-group>
@@ -46,7 +47,7 @@ export default {
     return {
       form: {
         balance: '',
-        purchase: '0',
+        purchase: '',
         remainingAmount: '0',
       },
     };
@@ -66,7 +67,7 @@ export default {
       return `R$ ${this.$store.getters.balance}`;
     },
     identification() {
-      return 'XXX-XXXX' || this.$store.getters.identification;
+      return this.$store.getters.identification;
     },
     remainingAmountRS() {
       this.form.remainingAmount = this.form.balance - this.form.purchase;
@@ -93,6 +94,7 @@ export default {
       this.$store.dispatch('makeAPurchase', { purchase: this.form.purchase, cpf: this.$store.getters.cpf })
         .then(() => {
           this.$router.go(-1);
+          this.$root.$children[0].$refs.notification.success('', 'Sucesso!');
         })
         .catch((err) => {
           this.showError(err.message);

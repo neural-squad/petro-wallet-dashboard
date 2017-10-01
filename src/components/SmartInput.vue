@@ -13,6 +13,9 @@
           </b-form-input>
         </b-form-group>
 
+
+        <video id="preview"></video>
+
         <b-button
           type="submit"
           style="display: none;">
@@ -24,6 +27,8 @@
 </template>
 
 <script>
+import QRScanner from '../assets/libs/lib-scanner.js';
+// import store from '../vuex/store';
 
 export default {
   name: 'SmartInput',
@@ -43,7 +48,26 @@ export default {
     },
   },
 
+  mounted() {
+    QRScanner.initiate({
+      onResult: (result) => { this.sendTransactionToPaymentGateway(result); },
+      timeout: 100000000,
+    });
+  },
+
   methods: {
+    sendTransactionToPaymentGateway(result) {
+      const transaction = JSON.parse(result);
+
+      this.$root.$children[0].$refs.notification.info('Processando transação!', 'Espere um momento!');
+      this.$store.dispatch('sendTransactionToPaymentGateway', result);
+
+      // Simulando operação assíncrona no gateway de pagamentos
+      setTimeout(() => {
+        this.$root.$children[0].$refs.notification.success(`Transação concluída com o valor de R$ ${transaction.saldo}`, 'Sucesso!');
+      }, 1500);
+    },
+
     isCpf(inputValue) {
       if (isNaN(inputValue)) {
         return false;
@@ -62,9 +86,9 @@ export default {
     onSubmit() {
       this.$store
         .dispatch('setIdentification', this.form.inputValue)
-        .then((res) => {
+        .then(() => {
           this.$router.push({ path: '/result' });
-          this.$root.$children[0].$refs.notification.success(`Dados encontrados! ${res}`, 'Sucesso!');
+          this.$root.$children[0].$refs.notification.success('Dados encontrados!', 'Sucesso!');
         })
         .catch((err) => {
           this.$root.$children[0].$refs.notification.error(err.message, 'Erro!');
