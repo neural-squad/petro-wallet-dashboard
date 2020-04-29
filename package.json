@@ -15,7 +15,7 @@
     "bootstrap-vue": "^1.0.0-beta.9",
     "fs": "0.0.1-security",
     "instascan": "^1.0.0",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "parse": "^1.10.0",
     "qr-code-scanner": "^1.0.5",
     "toastr": "^2.1.2",
