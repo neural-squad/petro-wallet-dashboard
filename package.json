@@ -11,7 +11,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "bootstrap-vue": "^1.0.0-beta.9",
     "fs": "0.0.1-security",
     "instascan": "^1.0.0",
